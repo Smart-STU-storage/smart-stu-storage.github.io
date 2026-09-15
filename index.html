@@ -13,7 +13,7 @@
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  html,body{overflow-x:hidden}
+  html{overflow-x:clip}
   body{margin:0;color:var(--ink);font-size:16px;line-height:1.55;
     font-family:"Segoe UI Variable Text","Segoe UI",-apple-system,Roboto,Arial,sans-serif;
     background-color:var(--bg);
@@ -55,9 +55,9 @@
   .plate{display:inline-block;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.06em;
     color:#C8CFDB;background:var(--steel);border-radius:4px;padding:5px 10px}
 
-  .hero{display:grid;grid-template-columns:7fr 5fr;gap:clamp(28px,4.5vw,52px);align-items:center;padding-block:clamp(44px,6vw,68px) clamp(56px,8vw,88px)}
+  .hero{display:grid;grid-template-columns:7fr 5fr;gap:clamp(28px,4.5vw,52px);align-items:center;padding-block:clamp(44px,6vw,68px) clamp(48px,6vw,72px)}
   .hero h1{font-size:clamp(34px,4.8vw,56px);font-weight:800}
-  .hero .sub{font-size:19px;margin:20px 0 30px;max-width:36ch}
+  .hero .sub{font-size:19px;margin:12px 0 30px;max-width:40ch}
   .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
   .hero .art{position:relative;padding:8px 0 8px 46px}
   .hero .art img{filter:drop-shadow(0 18px 30px rgba(27,30,38,.18))}
@@ -67,10 +67,11 @@
   .hero .measure .lbl{position:absolute;left:-4px;top:50%;transform:rotate(-90deg) translateX(-50%);
     transform-origin:left top;font-family:var(--mono);font-size:11.5px;font-weight:700;white-space:nowrap;
     background:var(--bg);padding:0 8px}
-  .hero .tag{position:absolute;right:2px;bottom:-6px}
+  .hero .tag{position:absolute;right:2px;bottom:-6px;white-space:nowrap;font-size:11.5px}
+  .hero .tagline{font-family:var(--mono);font-weight:700;font-size:clamp(15px,1.5vw,19px);color:var(--accent-dim);margin-top:18px;letter-spacing:.01em}
   .count{max-width:520px;width:100%;height:auto;display:block}
 
-  section{padding-block:clamp(72px,8vw,112px);scroll-margin-top:76px}
+  section{padding-block:clamp(56px,6vw,84px);scroll-margin-top:76px}
   section + section{border-top:1px solid var(--line)}
   .split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
   .lede{font-size:clamp(16px,1.35vw,17.5px);max-width:58ch;margin-top:20px}
@@ -112,7 +113,15 @@
   footer.page{padding:30px 0 44px;color:var(--muted);font-size:14px;font-weight:600}
   footer.page .wrap{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 
-  .demo{max-width:640px;margin-top:44px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+  .demo{margin-top:clamp(34px,4.5vw,46px);background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+    padding:clamp(18px,2.5vw,28px);display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(20px,3vw,40px);align-items:center}
+  .demo .head{grid-column:1/-1;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .demo .head h3{margin:0;font-size:17px}
+  .demo svg{width:100%;height:auto;display:block}
+  .demo ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+  .demo li{display:flex;gap:12px;align-items:flex-start;font-size:15px;font-weight:600;line-height:1.45}
+  .demo li i{flex:0 0 12px;width:12px;height:12px;border-radius:50%;margin-top:6px}
+  .demo li b{font-family:var(--mono);font-weight:700}
   @media (prefers-reduced-motion: reduce){ .demo *{animation:none !important} }
   @keyframes ledA{0%,12%{fill:#3A4150}14%,58%{fill:#E09A34}62%,96%{fill:#2F9E6E}100%{fill:#3A4150}}
   @keyframes dA{0%,12%{opacity:0}14%,58%{opacity:1}60%,100%{opacity:0}}
@@ -138,7 +147,7 @@
     .hero > div:first-child,.hero .art{animation:none}
   }
   @media (max-width: 860px){
-    section{padding-block:clamp(52px,9vw,80px)}
+    section{padding-block:clamp(40px,8vw,56px)}
     .hero{grid-template-columns:1fr;padding-block:26px 44px}
     .hero .art{order:-1;max-width:330px;padding:0;margin:0 auto}
     .hero .measure{display:none}
@@ -147,7 +156,8 @@
     .split,.proof,.request .inner,.steps3,.floor{grid-template-columns:1fr;gap:30px}
     .split .count{margin:0 auto}
     .figure{padding:12px}
-    .demo{padding:14px}
+    .demo{grid-template-columns:1fr;padding:14px}
+    .demo li{font-size:14px}
     .stats{gap:22px 34px}
     nav .links{gap:16px}
     nav .links a:not([href="#request"]){display:none}
@@ -155,7 +165,7 @@
   @media (max-width: 480px){
     .hero .cta a{flex:1 1 100%;text-align:center}
     .hero .sub{font-size:17px}
-    .hero h1{font-size:31px}
+    .hero h1{font-size:33px}
     .stats{flex-direction:column;gap:14px}
     .stats span{display:flex;gap:12px;align-items:baseline}
     .stats b{flex:0 0 78px;margin:0}
@@ -181,8 +191,9 @@
 
 <header class="wrap hero" id="top">
   <div>
-    <h1>46 chromosomes of your storage system</h1>
-    <p class="sub muted">Build things, not count them. Every bin weighs its contents, knows which part is inside and shows the live count on the bin and in the app.</p>
+    <h1>Build things, not count them</h1>
+    <p class="tagline">46 chromosomes of your storage system</p>
+    <p class="sub muted">Every bin weighs its contents, knows which part is inside and shows the live count on the bin and in the app.</p>
     <div class="cta">
       <a class="btn primary" href="#request">Request a test kit</a>
       <a class="btn ghost" href="#how">See how it works</a>
@@ -248,35 +259,16 @@
     </div>
   </div>
   <div class="demo" aria-label="Animated demo: two bins ask for quantities, then confirm">
-    <svg viewBox="0 0 460 330">
-      <text x="10" y="26" font-size="15" font-weight="800" fill="#1B1E26">Picking the &#171;Power supply&#187; kit</text>
-      <g class="b1">
-        <rect x="10" y="46" width="215" height="120" rx="8" fill="#2C323E"/>
-        <text x="26" y="74" font-size="14" font-weight="800" fill="#AEB6C2" font-family="Consolas, monospace">A1</text>
-        <circle class="led" cx="200" cy="68" r="8" fill="#3A4150"/>
-        <rect x="26" y="86" width="183" height="40" rx="6" fill="#14171E"/>
-        <g opacity=".9"><rect x="180.5" y="91" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="192.0" y="92.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="179.0" y="92.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="180.5" y="104" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="179.0" y="107.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="192.0" y="107.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="180.5" y="117" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="157.5" y="91" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="169.0" y="92.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="156.0" y="92.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="157.5" y="104" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="156.0" y="107.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="169.0" y="107.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="157.5" y="117" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="134.5" y="91" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="146.0" y="92.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="133.0" y="92.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="134.5" y="104" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="133.0" y="107.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="146.0" y="107.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="134.5" y="117" width="14" height="4" rx="1.8" fill="#20252F"/></g>
-        <g class="want"><rect x="180.5" y="91" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="179.0" y="92.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="180.5" y="104" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="179.0" y="107.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="192.0" y="107.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="180.5" y="117" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="169.0" y="92.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="156.0" y="92.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="157.5" y="104" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="169.0" y="107.5" width="4" height="12" rx="1.8" fill="#F2B75C"/></g>
-        <g class="done"><rect x="192.0" y="92.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="179.0" y="92.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="180.5" y="104" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="192.0" y="107.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="157.5" y="91" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="156.0" y="92.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="157.5" y="104" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="156.0" y="107.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="169.0" y="107.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="157.5" y="117" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="134.5" y="91" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="146.0" y="92.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="134.5" y="104" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="133.0" y="107.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="134.5" y="117" width="14" height="4" rx="1.8" fill="#F2B75C"/></g>
-        <text class="done" x="36" y="112" font-size="12" font-weight="700" fill="#2F9E6E">OK</text>
-        <text x="26" y="152" font-size="13" font-weight="600" fill="#8A93A4">M3x8 screw</text>
-      </g>
-      <g class="b2">
-        <rect x="235" y="46" width="215" height="120" rx="8" fill="#2C323E"/>
-        <text x="251" y="74" font-size="14" font-weight="800" fill="#AEB6C2" font-family="Consolas, monospace">A3</text>
-        <circle class="led" cx="425" cy="68" r="8" fill="#3A4150"/>
-        <rect x="251" y="86" width="183" height="40" rx="6" fill="#14171E"/>
-        <g opacity=".9"><rect x="405.5" y="91" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="417.0" y="92.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="404.0" y="92.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="405.5" y="104" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="404.0" y="107.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="417.0" y="107.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="405.5" y="117" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="382.5" y="91" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="394.0" y="92.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="381.0" y="92.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="382.5" y="104" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="381.0" y="107.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="394.0" y="107.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="382.5" y="117" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="359.5" y="91" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="371.0" y="92.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="358.0" y="92.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="359.5" y="104" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="358.0" y="107.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="371.0" y="107.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="359.5" y="117" width="14" height="4" rx="1.8" fill="#20252F"/></g>
-        <g class="want"><rect x="405.5" y="91" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="404.0" y="92.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="405.5" y="104" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="404.0" y="107.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="417.0" y="107.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="405.5" y="117" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="394.0" y="92.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="381.0" y="92.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="382.5" y="104" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="394.0" y="107.5" width="4" height="12" rx="1.8" fill="#F2B75C"/></g>
-        <g class="done"><rect x="417.0" y="92.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="404.0" y="92.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="405.5" y="104" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="417.0" y="107.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="382.5" y="91" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="394.0" y="92.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="381.0" y="92.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="382.5" y="104" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="381.0" y="107.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="394.0" y="107.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="382.5" y="117" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="371.0" y="92.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="371.0" y="107.5" width="4" height="12" rx="1.8" fill="#F2B75C"/></g>
-        <text class="done" x="261" y="112" font-size="12" font-weight="700" fill="#2F9E6E">OK</text>
-        <text x="251" y="152" font-size="13" font-weight="600" fill="#8A93A4">M3 nut</text>
-      </g>
-      <rect x="10" y="186" width="440" height="120" rx="8" fill="#F2F3F5"/>
-      <text x="30" y="226" font-size="15" font-weight="700" fill="#1B1E26">Amber digits: how many pieces to take.</text>
-      <text x="30" y="252" font-size="15" font-weight="700" fill="#1B1E26">Green light: weight confirmed, display back to stock.</text>
-      <text x="30" y="286" font-size="13.5" font-weight="600" fill="#5D6472">A wrong count turns the bin red until it is fixed.</text>
+    <div class="head"><span class="plate">BOM MODE</span><h3>Picking the &#171;Power supply&#187; kit</h3></div>
+    <svg viewBox="0 0 460 120" role="img" aria-label="Two bins: amber digits show 46 pieces to take, then the light turns green and the display returns to stock">
+      <g class="b1" transform="translate(0,0)"><rect x="0" y="0" width="215" height="120" rx="8" fill="#2C323E"/><text x="16" y="28" font-size="14" font-weight="800" fill="#AEB6C2" font-family="Consolas, monospace">A1</text><circle class="led" cx="190" cy="22" r="8" fill="#3A4150"/><rect x="16" y="40" width="183" height="40" rx="6" fill="#14171E"/><g opacity=".9"><rect x="170.5" y="45" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="182" y="46.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="169" y="46.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="170.5" y="58" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="169" y="61.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="182" y="61.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="170.5" y="71" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="147.5" y="45" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="159" y="46.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="146" y="46.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="147.5" y="58" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="146" y="61.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="159" y="61.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="147.5" y="71" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="124.5" y="45" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="136" y="46.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="123" y="46.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="124.5" y="58" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="123" y="61.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="136" y="61.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="124.5" y="71" width="14" height="4" rx="1.8" fill="#20252F"/></g><g class="want"><rect x="170.5" y="45" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="169" y="46.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="170.5" y="58" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="169" y="61.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="182" y="61.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="170.5" y="71" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="159" y="46.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="146" y="46.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="147.5" y="58" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="159" y="61.5" width="4" height="12" rx="1.8" fill="#F2B75C"/></g><g class="done"><rect x="182" y="46.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="169" y="46.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="170.5" y="58" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="182" y="61.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="147.5" y="45" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="146" y="46.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="147.5" y="58" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="146" y="61.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="159" y="61.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="147.5" y="71" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="124.5" y="45" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="136" y="46.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="124.5" y="58" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="123" y="61.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="124.5" y="71" width="14" height="4" rx="1.8" fill="#F2B75C"/></g><text class="done" x="26" y="66" font-size="12" font-weight="700" fill="#2F9E6E">OK</text><text x="16" y="106" font-size="13" font-weight="600" fill="#8A93A4">M3x8 screw</text></g>
+      <g class="b2" transform="translate(245,0)"><rect x="0" y="0" width="215" height="120" rx="8" fill="#2C323E"/><text x="16" y="28" font-size="14" font-weight="800" fill="#AEB6C2" font-family="Consolas, monospace">A3</text><circle class="led" cx="190" cy="22" r="8" fill="#3A4150"/><rect x="16" y="40" width="183" height="40" rx="6" fill="#14171E"/><g opacity=".9"><rect x="170.5" y="45" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="182" y="46.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="169" y="46.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="170.5" y="58" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="169" y="61.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="182" y="61.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="170.5" y="71" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="147.5" y="45" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="159" y="46.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="146" y="46.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="147.5" y="58" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="146" y="61.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="159" y="61.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="147.5" y="71" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="124.5" y="45" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="136" y="46.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="123" y="46.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="124.5" y="58" width="14" height="4" rx="1.8" fill="#20252F"/><rect x="123" y="61.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="136" y="61.5" width="4" height="12" rx="1.8" fill="#20252F"/><rect x="124.5" y="71" width="14" height="4" rx="1.8" fill="#20252F"/></g><g class="want"><rect x="170.5" y="45" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="169" y="46.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="170.5" y="58" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="169" y="61.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="182" y="61.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="170.5" y="71" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="159" y="46.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="146" y="46.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="147.5" y="58" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="159" y="61.5" width="4" height="12" rx="1.8" fill="#F2B75C"/></g><g class="done"><rect x="182" y="46.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="169" y="46.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="170.5" y="58" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="182" y="61.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="147.5" y="45" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="159" y="46.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="146" y="46.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="147.5" y="58" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="146" y="61.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="159" y="61.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="147.5" y="71" width="14" height="4" rx="1.8" fill="#F2B75C"/><rect x="136" y="46.5" width="4" height="12" rx="1.8" fill="#F2B75C"/><rect x="136" y="61.5" width="4" height="12" rx="1.8" fill="#F2B75C"/></g><text class="done" x="26" y="66" font-size="12" font-weight="700" fill="#2F9E6E">OK</text><text x="16" y="106" font-size="13" font-weight="600" fill="#8A93A4">M3 nut</text></g>
     </svg>
+    <ul>
+      <li><i style="background:var(--accent)"></i><span><b>Amber digits</b> &#8212; how many pieces to take from this bin.</span></li>
+      <li><i style="background:var(--ok)"></i><span><b>Green light</b> &#8212; the weight confirmed the take; the display goes back to stock.</span></li>
+      <li><i style="background:var(--err)"></i><span><b>Red light</b> &#8212; wrong count; stays on until the bin is corrected.</span></li>
+    </ul>
   </div>
 </section>
 
@@ -359,20 +351,20 @@
 
 <footer class="page">
   <div class="wrap">
-    <span class="plate">TEAM 46</span>
-    <span>built at the Skoltech Innovation Workshop &#183; September 2026</span>
     <span class="plate">CONTACT</span>
-    <!-- TODO team: replace the placeholders with the real address and handle -->
     <a href="mailto:Maksim.Ramenskii@skoltech.ru" style="color:var(--accent-dim);font-weight:700">Maksim.Ramenskii@skoltech.ru</a>
-    <span>TG: @Maksimmaz</span>
+    <span>@Maksimmaz</span>
   </div>
 </footer>
 
 <script>
+  const secs = [...document.querySelectorAll('section')];
   const io = new IntersectionObserver(es => es.forEach(e => {
-    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-  }), { threshold: 0.15 });
-  document.querySelectorAll('section').forEach(s => io.observe(s));
+    if(e.isIntersecting || e.boundingClientRect.bottom < 0){ e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: 0.12 });
+  secs.forEach(s => io.observe(s));
+  /* sections jumped over by an anchor link or a fast scroll must not stay hidden */
+  addEventListener('scroll', () => secs.forEach(s => { if(s.getBoundingClientRect().bottom < 0) s.classList.add('in'); }), { passive: true });
 
   const form = document.getElementById('req');
   const err = document.getElementById('err');
@@ -385,10 +377,13 @@
     btn.disabled = true; btn.textContent = 'Sending\u2026';
     try {
       const r = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
-      if(!r.ok) throw new Error(r.status);
+      let data = {}; try { data = await r.json(); } catch(_) {}
+      console.log('[formspree]', r.status, data);
+      if(!r.ok || data.ok !== true) throw new Error((data.errors && data.errors.map(x => x.message).join('; ')) || ('HTTP ' + r.status));
       form.classList.add('done');
-    } catch (_) {
-      err.textContent = 'Could not send. Please email us directly: Maksim.Ramenskii@skoltech.ru';
+    } catch (ex) {
+      console.warn('[formspree] failed:', ex.message);
+      err.textContent = 'Could not send (' + ex.message + '). Please email us directly: Maksim.Ramenskii@skoltech.ru';
       form.classList.add('bad');
       btn.disabled = false; btn.textContent = 'Send request';
     }
